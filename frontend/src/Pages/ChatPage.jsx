@@ -1,12 +1,7 @@
-const ChatPage = () => {
-    const fetchChats = async() => {
-        const data = await.axios.get();
-
-    }
-
+function ChatPage(){
     return (
-        <div>
-            
+        <div >
+
         </div>
     )
 }
