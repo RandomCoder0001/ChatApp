@@ -7,6 +7,7 @@ import axios from "axios";
 import { useState } from "react";
 import { useHistory } from "react-router";
 
+
 const Signup = () => {
   const [show, setShow] = useState(false);
   const handleClick = () => setShow(!show);
@@ -60,7 +61,7 @@ const Signup = () => {
         },
         config
       );
-      console.log(data);
+      console.log(data || "jap");
       toast({
         title: "Registration Successful",
         status: "success",
@@ -97,12 +98,12 @@ const Signup = () => {
       return;
     }
     console.log(pics);
-    if (pics.type === "image/jpeg" || pics.type === "image/png") {
+    if (pics.type === "image/jpg" || pics.type === "image/png" || pics.type === "image/jpeg" ) {
       const data = new FormData();
       data.append("file", pics);
-      data.append("upload_preset", "chat-app");
-      data.append("cloud_name", "piyushproj");
-      fetch("https://api.cloudinary.com/v1_1/piyushproj/image/upload", {
+      data.append("upload_preset", "chat app");
+      data.append("cloud_name", "dkzjztltv");
+      fetch("https://api.cloudinary.com/v1_1/dkzjztltv/image/upload", {
         method: "post",
         body: data,
       })
