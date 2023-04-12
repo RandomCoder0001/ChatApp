@@ -2,6 +2,21 @@ const asyncHandler = require("express-async-handler");
 const User = require("../models/UserModel");
 const generateToken = require("../config/generateToken");
 
+
+const allUsers = asyncHandler(async (req, res) => {
+  const keyword = req.query.search
+    ? {
+        $or: [
+          { name: { $regex: req.query.search, $options: "i" } },
+          { email: { $regex: req.query.search, $options: "i" } },
+        ],
+      }
+    : {};
+
+  const users = await User.find(keyword).find({ _id: { $ne: req.user._id } });
+  res.send(users);
+});
+
 const registerUser = asyncHandler(async (req, res) => {
   const { name, email, password, pic } = req.body;
 
@@ -40,7 +55,7 @@ const authUser = asyncHandler(async (req, res) => {
   const user = await User.findOne({ email });
 
   if (user && (await user.matchPassword(password))) {
-    console.log("here")
+    
     res.json({
       _id: user._id,
       name: user.name,
@@ -49,11 +64,10 @@ const authUser = asyncHandler(async (req, res) => {
       pic: user.pic,
       token: generateToken(user._id),
     });
-    console.log("done this far");
   } else {
     res.status(401);
     throw new Error("Invalid Email or Password");
   }
 });
 
-module.exports = { registerUser , authUser};
+module.exports = { registerUser , authUser , allUsers};
