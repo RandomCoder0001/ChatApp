@@ -145,7 +145,7 @@ const GroupChatModal = ({ children }) => {
             <FormControl>
               <Input
                 placeholder="Chat Name"
-                mb={3}
+                mb={2}
                 onChange={(e) => setGroupChatName(e.target.value)}
               />
             </FormControl>
