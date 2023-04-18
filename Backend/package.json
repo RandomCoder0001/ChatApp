@@ -4,7 +4,8 @@
   "description": "",
   "main": "Server.js",
   "scripts": {
-    "start": "nodemon Backend/Server.js"
+    "start": "nodemon Backend/Server.js",
+    "postinstall": "cd ../frontend && npm install"
   },
   "author": "",
   "license": "ISC",
@@ -17,6 +18,7 @@
     "jsonwebtoken": "^9.0.0",
     "mongoose": "^7.0.3",
     "nodemon": "^2.0.22",
+    "postinstall": "^0.8.0",
     "socket.io": "^4.6.1"
   }
 }
